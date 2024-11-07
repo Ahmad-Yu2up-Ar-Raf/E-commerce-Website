@@ -1,0 +1,33 @@
+# Mengabaikan file .env yang berisi informasi sensitif
+.env
+
+# Mengabaikan folder vendor, karena itu bisa di-install ulang dengan composer
+/vendor/
+
+# Mengabaikan folder yang berisi library atau pustaka yang sudah di-install menggunakan Composer
+midtrans-php-master/  
+
+
+# Mengabaikan file log atau file sementara lainnya
+*.log
+
+# File yang dihasilkan oleh sistem operasi
+.DS_Store   # MacOS
+Thumbs.db    # Windows
+
+# Mengabaikan file konfigurasi terkait IDE
+.idea/       # JetBrains IDEs
+.vscode/     # VS Code
+*.sublime-project   # Sublime Text
+
+# Mengabaikan file backup
+*~
+*.bak
+*.swp
+
+# File temporary yang bisa dihasilkan oleh editor
+*.tmp
+
+# Mengabaikan file yang berhubungan dengan testing tools (misalnya PHPUnit, Behat, dll)
+phpunit.xml
+phpunit.xml.dist

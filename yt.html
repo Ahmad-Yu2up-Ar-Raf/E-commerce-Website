@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="YT.css">
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
+        <!-- font -->
+        <script src="https://unpkg.com/feather-icons"></script>
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="youtube.js" async></script>
+
+        <!-- payment gateway -->
+        <!-- payment gateway -->
+<script type="text/javascript"
+src="https://app.sandbox.midtrans.com/snap/snap.js"
+data-client-key="<?php echo $_ENV['MIDTRANS_CLIENT_KEY']; ?>"></script>
+
+    
+</head>
+<body>
+    <!-- navbar start -->
+    <nav class="navbar" x-data>
+        <a href="#" class="navbar-logo">Chicago Frieds <span>Chiken</span>.</a>
+        <div class="navbar-nav" >
+            <a href="#">Home</a>
+            <a href="#about">Tentang Kami</a>
+            <a href="#menu">Menu</a>
+            <a href="#produk">Produk</a>
+            <a href="#contact">Kontak</a>
+        </div>
+        <div class="navbar-extra">
+         
+ 
+                <i data-feather="search" id="mecari"></i>
+          
+            
+           <i data-feather="shopping-cart" id="cart"></i>
+            <span id="cartcount" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+            
+            <i data-feather="menu" id="hamburger-menu" ></i>
+            
+            
+        </div>
+
+        <div class="Search">
+            <div>
+
+                <input type="search" placeholder="search here...">
+                
+            <i data-feather="search"></i>
+            </div>
+        </div>
+        <div class="cart-slide">
+            <template x-for="(item,index) in $store.cart.items" x-key="index">
+            <div class="cart-item">
+                <div class="produk-kiri">
+
+                    <img :src="`${item.img}`" :alt="item.name">
+                    <div class="cart-content">
+                        <h1 x-text="item.name"></h1>
+                        <p><span x-text="rupiah(item.price)"></span> &times;
+                        <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+                    <span x-text="item.quantity"></span>
+                <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+                <span x-text="rupiah(item.total)"></span>
+                </p>
+                        
+                    </div>
+                </div>
+              
+            </div>
+    </template>
+    <h4 x-show="!$store.cart.items.length">cart is empty</h4>
+    <h4 x-show="$store.cart.items.length">total : <span x-text="rupiah($store.cart.total)"></span></h4>
+   <div class="form-container" x-show="$store.cart.items.length">
+    <form action="" id="checkoutform">
+        <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+        <input type="hidden" name="total" x-model="$store.cart.total">
+        <h5>Customer Detail</h5>
+
+        <label for="name">
+            <span>Name</span>
+            <input type="text" name="name" id="name">
+        </label>
+        <label for="email">
+            <span>Email</span>
+            <input type="email" name="email" id="email">
+        </label>
+        <label for="phone">
+            <span>Phone</span>
+            <input type="number" name="phone" id="phone" autocomplete="off">
+        </label>
+
+        <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">checkout</button>
+    </form>
+   </div>
+        </div> 
+    </nav>
+    
+    <section class="hero"  id="home">
+        <main class="content">
+            <h1>Mari Nikmati Kelezatan <span>Ayam</span></h1>
+            <p>Chicago fried chiken Jago nya ayam goreng.</p>
+          
+        </main>
+    </section>
+    
+    <section id="about" >
+        
+        <h1 class="title"><span>Tentang </span>kami</h1>
+        
+        <div class="about-content">
+            <img src="https://arboge.com/wp-content/uploads/2023/05/Fried-Chicken.jpg" alt="">
+            <div>
+                <h1>Kenaapa Memilih Kami ?</h1>
+                <p>
+                    "Pilih fried chicken kami sebagai destinasi favorit Anda untuk menikmati rasa yang tak tertandingi. Kami mengutamakan kualitas dan kesegaran di setiap potongan ayam yang kami sajikan. Menggunakan bahan-bahan pilihan dan bumbu khas yang diracik dengan teliti, fried chicken kami menghadirkan sensasi renyah di luar dan juicy di dalam yang begitu memanjakan lidah. Setiap menu kami dibuat dengan cinta dan perhatian untuk memberikan pengalaman makan yang berkesan. </p>
+                    <p>Selain itu, kami bangga memberikan pelayanan yang cepat, ramah, dan penuh perhatian untuk memastikan kenyamanan Anda. Dengan komitmen tinggi terhadap kepuasan pelanggan dan kualitas yang selalu terjaga, kami menjadi pilihan utama bagi pecinta fried chicken. Temukan rasa yang berbeda dan biarkan setiap kunjungan Anda menjadi pengalaman yang ingin selalu diulang. Pilih kami untuk rasa, kualitas, dan pelayanan yang tak tertandingi – karena kami ada untuk memberikan yang terbaik bagi Anda."</p>
+               
+              
+            </div>
+        </div>
+    </section>
+    
+    <section id="menu">
+        <div class="menu-title">
+            <h1> Outlet <span>Kami</span></h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, tempora?</p>
+        </div>
+        <div class="Daftar">
+            <div class="menu-content">
+                <img src="images/outles1.png" alt="">
+                <h1>-Life booth-</h1>
+                <p>IDR 23jt</p>
+                
+            </div>
+            <div class="menu-content">
+                <img src="images/outlet3.png" alt="">
+                <h1>-Simple Table-</h1>
+                <p>IDR 25JT</p>
+                
+            </div>
+            <div class="menu-content">
+                <img src="images/outlet4.png" alt="">
+                <h1>-Standar table-</h1>
+                <p>IDR 28JT</p>
+                
+            </div>
+            <div class="menu-content">
+                <img src="images/outlet6.png" alt="">
+                <h1>-Simple Booth-</h1>
+                <p>IDR 28JT</p>
+                
+            </div>
+            <div class="menu-content">
+                <img src="images/outlet5.png" alt="">
+                <h1>-Paket Klasik-</h1>
+                <p>IDR 70JT</p>
+                
+            </div>
+            <div class="menu-content">
+                <img src="images/outlet2.png" alt="">
+                <h1>-Mini Resto-</h1>
+                <p>IDR 180JT</p>
+             
+            </div>
+        </div>
+    </section>
+
+<!--  -->
+    <div id="box">
+        <div class="extra-box">
+            <div class="extra-img">
+
+                <img src="images/pizza.jpg" alt="">
+                <i data-feather="x" id="close"></i>
+            </div>
+            <div class="extra-content">
+                
+                <div class="extra-box-title">
+      <h1>Product 1</h1>
+                </div>
+                <div class="content-isi">
+
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis velit quibusdam dignissimos. Itaque tenetur aut error in assumenda dolorem eos nesciunt. Modi beatae eius commodi numquam maiores, quos est quis, neque asperiores, deleniti explicabo omnis dolor velit! Aliquid, facere quaerat!</p>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                
+        
+                        <p>IDR 20K IDR 27K</p>
+                </div>
+                
+                    <div class="extra-box-button">
+                        <div>
+
+                            <i data-feather="shopping-cart"></i>
+                        </div>
+                        <div>
+
+                            <h5>add to cart</h5>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<!--  -->
+
+    <section id="produk" x-data="products">
+        <div class="Produk-title">
+            <h1>Menu <span>Kami</span></h1>
+            <p>Berikut ini beberapa menu menu kami</p>
+        </div>
+        <div class="Daftar-produk">
+            <template x-for="(item,index) in items" x-key="index">
+
+                <div class="produk-content">
+                    <div class="menu-icon">
+    
+
+                        <svg @click="$store.cart.add(item)" id="cart-icon"
+  width="24"
+  height="24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <use href="feather-sprite.svg#shopping-cart" />
+
+</svg>
+                        <svg
+  width="24"
+  height="24"
+
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+
+>
+  <use href="feather-sprite.svg#eye" />
+
+</svg>
+                        <!-- <a href="" id="cart-menu" ><i data-feather="shopping-cart"></i></a>
+                        <a href="" id="eyes-menu" ><i data-feather="eye"></i></a> -->
+                    </div>
+                    
+                    <img :src="`${item.img}`" alt="Poduk 1">
+                    <div class="menu-deskripcion">
+                        
+                        <div class="products-menu-title">
+    
+                            <h1 x-text="item.name">Pizza go</h1>
+                        </div>
+                        <div class="menu-rate">
+                            <svg
+                            width="24"
+                            height="24"
+                          
+                            fill="none"
+                            stroke="none"
+                            stroke-width="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          
+                          >
+                            <use href="feather-sprite.svg#star" />
+                          
+                          </svg>
+                            <svg
+                            width="24"
+                            height="24"
+                          
+                            fill="none"
+                            stroke="none"
+                            stroke-width="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          
+                          >
+                            <use href="feather-sprite.svg#star" />
+                          
+                          </svg>
+                            <svg
+                            width="24"
+                            height="24"
+                          
+                            fill="none"
+                            stroke="none"
+                            stroke-width="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          
+                          >
+                            <use href="feather-sprite.svg#star" />
+                          
+                          </svg>
+                            <svg
+                            width="24"
+                            height="24"
+                          
+                            fill="none"
+                            stroke="none"
+                            stroke-width="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          
+                          >
+                            <use href="feather-sprite.svg#star" />
+                          
+                          </svg>
+                            <svg
+                            width="24"
+                            height="24"
+                          
+                            fill="none"
+                            stroke="none"
+                            stroke-width="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          
+                          >
+                            <use href="feather-sprite.svg#star" />
+                          
+                          </svg>
+                    
+                       
+                        </div>
+                        <div class="menu-price">
+    
+                            <p><span x-text="rupiah(item.price)"></span></p>
+                        </div>
+                   </div>
+              
+                </div>
+              
+            </template>
+          
+         
+        </div>
+    </section>
+
+    <!-- kontak -->
+     <section id="contact">
+        <div class="contact-title">
+            <h1><span>Kontak</span> Kami</h1>
+            <p>Kalian Bisa hubungi kami untuk informasi lebih lanjut!</p>
+        </div>
+        <div class="contact-content">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2028610.4932955964!2d106.6710335053051!3d-6.754012754493457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c6e6a5ab6069%3A0x991a69b566afb!2sPT.%20Chicago%20Star%20Corp%20(%20Kantor%20Pusat%20Chicago%20Fried%20Chicken%20)!5e0!3m2!1sid!2sid!4v1729848543024!5m2!1sid!2sid" width="900" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div>
+
+                <form action="">
+                <div class="kontak">
+                    <i data-feather="user"></i>
+                    <input type="text"   placeholder="Name" required>
+                </div>
+                <div class="kontak">
+                    <i data-feather="mail"></i>
+                    <input type="email"   placeholder="Email" required>
+                </div>
+                <div class="kontak">
+                    <i data-feather="phone"></i>
+                    <input type="number"   placeholder="Phone" required>
+                </div >
+        
+
+                    <button type="submit">Kirim Pesan</button>
+        
+                </form>
+            </div>
+        </div>
+     </section>
+    <!-- kontak -->
+
+    <!-- footer -->
+     <footer id="footer">
+    
+
+            <div class="footer-icon">
+                <a href="">
+
+                    <i data-feather="instagram"></i>
+                </a>
+                <a href="">
+
+                    <i data-feather="facebook"></i>
+                </a>
+                <a href="">
+
+                    <i data-feather="youtube"></i>
+                </a>
+            </div>
+            <div class="footer-content" >
+                <a href="#">Home</a>
+                <a href="#about">Tentang Kami</a>
+                <a href="#menu">Menu</a>
+                <a href="#contact">Kontak</a>
+            </div>
+            <div class="copy">
+                Created By <span>Ahmad Yusuf</span>. | © 2024.
+            </div>
+     
+     </footer>
+    <!-- footer -->
+    <script> feather.replace() </script>
+    <!-- navbar end -->
+   
+</body>
+</html>
