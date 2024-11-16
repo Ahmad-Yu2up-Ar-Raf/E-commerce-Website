@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="images/png" href="images/iconweb.png" >
         <title>Document</title>
+        
         <link rel="stylesheet" href="YT.css">
         <!-- font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,8 +14,8 @@
         <!-- font -->
         <script src="https://unpkg.com/feather-icons"></script>
         
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script src="youtube.js" async></script>
+
+     
 
         <!-- payment gateway -->
         <!-- payment gateway -->
@@ -256,7 +258,7 @@ data-client-key="<?php echo $_ENV['MIDTRANS_CLIENT_KEY']; ?>"></script>
                         <a href="" id="eyes-menu" ><i data-feather="eye"></i></a> -->
                     </div>
                     
-                    <img :src="`${item.img}`" alt="Poduk 1">
+                    <img :src="`${item.img}`" alt="Poduk 1" loading="lazy">
                     <div class="menu-deskripcion">
                         
                         <div class="products-menu-title">
@@ -418,6 +420,7 @@ data-client-key="<?php echo $_ENV['MIDTRANS_CLIENT_KEY']; ?>"></script>
     <!-- footer -->
     <script> feather.replace() </script>
     <!-- navbar end -->
-   
+    <script src="youtube.js" async></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
